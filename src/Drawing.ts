@@ -24,7 +24,7 @@ class Drawing {
     /**
      * circle
      * Draws a circle with the given radius
-     * at the position given by pos
+     * at the position given by (posx, posy)
      */
     public circle(posx: number, posy: number, radius: number):void {
         this.context.beginPath();
