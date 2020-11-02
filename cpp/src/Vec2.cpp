@@ -78,7 +78,9 @@ bool near(const Vec2 &lv, const Vec2 &rv) {
         return true; //shortcut
     else {
         constexpr float e = std::numeric_limits<float>::epsilon();
-        return nearlyEqual(norm2(lv), norm2(rv), e, 10);
+        //ULP: units of least precision
+        constexpr int ulp_threshold = 10;
+        return nearlyEqual(norm2(lv), norm2(rv), e, ulp_threshold);
     }
 }
 
