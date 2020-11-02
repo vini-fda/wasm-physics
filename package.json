@@ -1,0 +1,28 @@
+{
+  "name": "wasm-physics",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A WebAssembly-based particle physics simulator for the web",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vini-fda/wasm-physics.git"
+  },
+  "keywords": [
+    "wasm",
+    "typescript",
+    "physics"
+  ],
+  "author": "vini-fda",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "ts-loader": "^8.0.7",
+    "typescript": "^4.0.5",
+    "webpack": "^5.3.2",
+    "webpack-cli": "^4.1.0"
+  }
+}
