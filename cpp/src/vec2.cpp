@@ -117,6 +117,10 @@ vec2& vec2::normalize() {
     return *this;
 }
 
+vec2 perpTo(const vec2 &v) {
+    return vec2(-v.y, v.x);
+}
+
 int32_t ulpsDistance(const float a, const float b)
 {
     /* source-code from https://bitbashing.io/comparing-floats.html */
