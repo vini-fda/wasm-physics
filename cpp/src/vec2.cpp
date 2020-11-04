@@ -111,6 +111,12 @@ float dist(const vec2 &lv, const vec2 &rv) {
     return norm(lv - rv);
 }
 
+vec2& vec2::normalize() {
+    float length = norm(*this);
+    *this /= length;
+    return *this;
+}
+
 int32_t ulpsDistance(const float a, const float b)
 {
     /* source-code from https://bitbashing.io/comparing-floats.html */
