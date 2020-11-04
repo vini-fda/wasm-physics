@@ -43,10 +43,12 @@ public:
     //Mult by scalar(left and right)
     friend vec2 operator*(vec2 lv, float alpha);
     friend vec2 operator*(float alpha, vec2 rv);
-    //Projection
+    //Projects lv into rv's span
     friend vec2 proj(const vec2& lv, const vec2& rv);
     //Normalize
     vec2& normalize();
+    //Perpendicular
+    friend vec2 perpTo(const vec2& v);
 };
 
 
