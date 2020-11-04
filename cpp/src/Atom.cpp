@@ -81,23 +81,40 @@ void Atom::update(float dt) {
 }
 
 float collision_time(const Atom &a, const Atom &b) {
-//    //The displacement vector between the two atoms
-//    let r: vec2 = vec2.create();
-//    vec2.sub(r, atom1.pos, atom2.pos);
-//    //The relative velocity
-//    let V_rel: vec2 = vec2.create();
-//    vec2.sub(V_rel, atom1.velocity, atom2.velocity);
-//    //let V_rel_dir: vec2 = vec2.create();
-//    //vec2.normalize(V_rel_dir, V_rel);
-//    let dotP = vec2.dot(V_rel, r);
-//    let sqrLen_V_rel = vec2.sqrLen(V_rel);
-//    //-p5.Vector.dot(V_rel, dpos) / V_rel.mag();
-//    let deltaT = -dotP - Math.sqrt(dotP*dotP - sqrLen_V_rel*(vec2.sqrLen(r) - (atom1.radius + atom2.radius)**2));
-//    deltaT /= sqrLen_V_rel;
-//    //let deltaT = beta - sqrt(sq(atom1.radius + atom2.radius) - sq(dpos.mag()) + sq(beta));
-//    console.log(deltaT);
-//    return deltaT;
     //The displacement vector between the two atoms
+    vec2 r = a.pos - b.pos;
+    //Relative velocity
+    vec2 v_rel = a.vel - b.vel;
+    //Dot product
+    float P = v_rel * r;
+    //Squared length/norm of relative velocity
+    float sqV = norm2(v_rel);
+    //The collision time
+    float deltaT = -P - sqrtf(P*P - sqV*(norm2(r) - (a.radius + b.radius)*(a.radius + b.radius)));
+    deltaT /= sqV;
+
+    return deltaT;
+}
+
+/* Should be called when a and b collide */
+void resolve_collision(Atom &a, Atom &b) {
+    //r is the direction which connects the two atoms
     vec2 r = (a.pos - b.pos).normalize();
-    return 0;
+    //n is perpendicular to r
+    vec2 n = perpTo(r);
+
+    //n and r are orthonormal basis vectors
+    /* Calculate each velocity component
+    * we must calculate those parallel to r */
+
+    //Velocity parallel to r
+    float va_r = (a.mass - b.mass)*(r * a.vel) + 2*b.mass*(r * b.vel);
+    va_r /= a.mass + b.mass;
+    float vb_r = (b.mass - a.mass)*(r * b.vel) + 2*a.mass*(r * a.vel);
+    vb_r /= a.mass + b.mass;
+
+    //Velocities after collision
+    a.vel = proj(a.vel, n) + va_r * r;
+    b.vel = proj(b.vel, n) + vb_r * r;
+
 }
