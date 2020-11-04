@@ -20,14 +20,15 @@ public:
     //vec2 force{vec2(0,0)};
     vec2 vel{vec2(0, 0)};
     vec2 pos{vec2(0.0, 0.0)};
-    double radius{1.0};
-    double mass{1.0};
+    float radius{1.0};
+    float mass{1.0};
 
     void draw();
     //void processInput();
     //Updates physics of the Atom
     void update(float dt);
     friend float collision_time(const Atom& a, const Atom& b);
+    friend void resolve_collision(Atom& a, Atom& b);
 
     ~Atom() {
         count_instances--;
