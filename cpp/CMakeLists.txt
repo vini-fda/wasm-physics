@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.13)  # CMake version check
 project(cpp_wasm_physics)
 set(CMAKE_CXX_STANDARD 14)            # Enable c++14 standard
 
-include_directories(src)
+include_directories(src include)
 
 set(CMAKE_BINARY_DIR binaries)
 
