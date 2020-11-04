@@ -45,6 +45,8 @@ public:
     friend vec2 operator*(float alpha, vec2 rv);
     //Projection
     friend vec2 proj(const vec2& lv, const vec2& rv);
+    //Normalize
+    vec2& normalize();
 };
 
 
